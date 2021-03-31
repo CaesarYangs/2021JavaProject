@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.*;
 
 
 public class LoginWindow {
@@ -11,13 +12,48 @@ public class LoginWindow {
     public static String Username;
     public static String Password;
 
+
+
+
+
+
     LoginWindow(){
         Username = "admin";
         Password = "132456";
     }
 
     public static void LoginW(JFrame relativeWindow) {
-        Username = "admin";
+        //database try
+
+        Connection conn = null;
+        Statement stmt = null;
+        ResultSet rs = null;
+
+        try {
+            long start = System.currentTimeMillis();
+
+            conn = DriverManager.getConnection("jdbc:mysql://47.97.194.162:3306/LearnSQL",
+                    "LearnSQL", "Yyq132456");
+            long end = System.currentTimeMillis();
+            System.out.println(conn);
+            System.out.println("建立连接耗时： " + (end - start) + "ms 毫秒");
+
+            stmt = conn.createStatement();
+
+            rs = stmt.executeQuery("select * from `1`");
+            //System.out.println("id\tname\tage\tsex");
+            while (rs.next()) {
+                System.out.println(rs.getInt(1)+" "+rs.getString(2)+" "+rs.getString(3));
+            }
+
+
+
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
+        /*Username = "admin";
         Password = "132456";
 
         JFrame newJFrame = new JFrame("登陆");
@@ -107,6 +143,6 @@ public class LoginWindow {
 
         newJFrame.setContentPane(hBox01);
         newJFrame.pack();
-        newJFrame.setVisible(true);
+        newJFrame.setVisible(true);*/
     }
 }

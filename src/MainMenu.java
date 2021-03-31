@@ -21,12 +21,14 @@ public class MainMenu {
 
         JMenuBar menuBar = new JMenuBar();
 
+        JMenu micon = new JMenu(" ");
         JMenu fileMenu = new JMenu("文件");
         JMenu editMenu = new JMenu("编辑");
         JMenu viewMenu = new JMenu("视图");
         JMenu helpMenu = new JMenu("帮助");
         JMenu aboutMenu = new JMenu("关于");
 
+        menuBar.add(micon);
         menuBar.add(fileMenu);
         menuBar.add(editMenu);
         menuBar.add(viewMenu);
@@ -69,6 +71,9 @@ public class MainMenu {
         //关于 子菜单
 
         Mmenu.setJMenuBar(menuBar);
+
+
+
 
 
 
