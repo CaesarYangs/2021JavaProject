@@ -13,7 +13,7 @@ public class MainMenu {
         Mmenu.setLocationRelativeTo(relativeWindow);
 
         // 点击窗口关闭按钮, 执行销毁窗口操作（如果设置为 EXIT_ON_CLOSE, 则点击新窗口关闭按钮后, 整个进程将结束）
-        Mmenu.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+        Mmenu.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         JPanel panel = new JPanel(new FlowLayout());
 
@@ -22,14 +22,6 @@ public class MainMenu {
         JButton btn03 = new JButton("按钮03");
         JButton btn04 = new JButton("按钮04");
         JButton btn05 = new JButton("按钮05");
-        JButton btn = new JButton("Show New Window");
-        btn.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // 点击按钮, 显示新的一个窗口
-                LoginWindow.LoginW(Mmenu);
-            }
-        });
 
 
 
@@ -38,7 +30,6 @@ public class MainMenu {
         panel.add(btn03);
         panel.add(btn04);
         panel.add(btn05);
-        panel.add(btn);
 
 
 
