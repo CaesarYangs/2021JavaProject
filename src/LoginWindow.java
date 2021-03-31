@@ -65,6 +65,14 @@ public class LoginWindow {
                     newJFrame.dispose();
 
                 }else {
+                    passwordField.getCursor();
+                    passwordField.setText("");
+                    JOptionPane.showMessageDialog(
+                            newJFrame,
+                            "密码错误",
+                            "提示",
+                            JOptionPane.WARNING_MESSAGE
+                    );
 
                 }
 

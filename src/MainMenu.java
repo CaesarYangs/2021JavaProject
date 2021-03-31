@@ -17,19 +17,67 @@ public class MainMenu {
 
         JPanel panel = new JPanel(new FlowLayout());
 
-        JButton btn01 = new JButton("按钮01");
-        JButton btn02 = new JButton("按钮02");
-        JButton btn03 = new JButton("按钮03");
-        JButton btn04 = new JButton("按钮04");
-        JButton btn05 = new JButton("按钮05");
+        //----------menu--------------
+
+        JMenuBar menuBar = new JMenuBar();
+
+        JMenu fileMenu = new JMenu("文件");
+        JMenu editMenu = new JMenu("编辑");
+        JMenu viewMenu = new JMenu("视图");
+        JMenu helpMenu = new JMenu("帮助");
+        JMenu aboutMenu = new JMenu("关于");
+
+        menuBar.add(fileMenu);
+        menuBar.add(editMenu);
+        menuBar.add(viewMenu);
+        menuBar.add(helpMenu);
+        menuBar.add(aboutMenu);
+
+        //文件 子菜单
+        JMenuItem file_open = new JMenuItem("打开");
+        JMenuItem file_new = new JMenuItem("新建");
+        JMenuItem file_quit = new JMenuItem("退出");
+        fileMenu.add(file_new);
+        fileMenu.add(file_open);
+        fileMenu.addSeparator();
+        fileMenu.add(file_quit);
+
+        file_quit.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                int result = JOptionPane.showConfirmDialog(
+                        Mmenu,
+                        "确认退出？",
+                        "提示",
+                        JOptionPane.YES_NO_OPTION
+                );
+
+                if(result==0){
+                    Mmenu.dispose();
+                    System.exit(0);
+                }
+
+
+            }
+        });
+
+
+        //编辑 子菜单
+        //视图 子菜单
+        //帮助 子菜单
+        //关于 子菜单
+
+        Mmenu.setJMenuBar(menuBar);
 
 
 
-        panel.add(btn01);
-        panel.add(btn02);
-        panel.add(btn03);
-        panel.add(btn04);
-        panel.add(btn05);
+
+
+
+
+
+
 
 
 
