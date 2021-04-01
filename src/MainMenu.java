@@ -7,7 +7,7 @@ public class MainMenu {
     public static void MainWindow(JFrame relativeWindow){
         JFrame Mmenu = new JFrame("MainMenu");
 
-        Mmenu.setSize(1500, 900);
+        Mmenu.setSize(1500, 800);
 
         // 把新窗口的位置设置到 relativeWindow 窗口的中心
         Mmenu.setLocationRelativeTo(relativeWindow);
@@ -73,17 +73,26 @@ public class MainMenu {
         Mmenu.setJMenuBar(menuBar);
 
 
+        //主界面视图
+        GroupLayout levelhead = new GroupLayout(panel);
+        panel.setLayout(levelhead);
+        levelhead.setAutoCreateGaps(true);
+        levelhead.setAutoCreateContainerGaps(true);
+
+        JLabel H1label = new JLabel();
+        H1label.setText("准毕业生管理系统");
+        JButton Mbt01 = new JButton("测试按钮");
+
+        GroupLayout.SequentialGroup hSeqGroup = levelhead.createSequentialGroup().addGap(35).addComponent(H1label).addGap(20).addComponent(Mbt01);
+
+        levelhead.setHorizontalGroup(hSeqGroup);
+
+        GroupLayout.ParallelGroup vParalGroup01 = levelhead.createParallelGroup().addGap(300).addComponent(H1label).addComponent(Mbt01);
 
 
 
 
-
-
-
-
-
-
-
+        levelhead.setVerticalGroup(vParalGroup01);
 
 
         Mmenu.setContentPane(panel);

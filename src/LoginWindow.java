@@ -12,7 +12,7 @@ public class LoginWindow {
     public static String Username;
     public static String Password;
 
-
+    public static int Status = new Integer(0);
 
 
 
@@ -25,35 +25,8 @@ public class LoginWindow {
     public static void LoginW(JFrame relativeWindow) {
         //database try
 
-        Connection conn = null;
-        Statement stmt = null;
-        ResultSet rs = null;
 
-        try {
-            long start = System.currentTimeMillis();
-
-            conn = DriverManager.getConnection("jdbc:mysql://47.97.194.162:3306/LearnSQL",
-                    "LearnSQL", "Yyq132456");
-            long end = System.currentTimeMillis();
-            System.out.println(conn);
-            System.out.println("建立连接耗时： " + (end - start) + "ms 毫秒");
-
-            stmt = conn.createStatement();
-
-            rs = stmt.executeQuery("select * from `1`");
-            //System.out.println("id\tname\tage\tsex");
-            while (rs.next()) {
-                System.out.println(rs.getInt(1)+" "+rs.getString(2)+" "+rs.getString(3));
-            }
-
-
-
-        }catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-
-        /*Username = "admin";
+        Username = "admin";
         Password = "132456";
 
         JFrame newJFrame = new JFrame("登陆");
@@ -93,12 +66,60 @@ public class LoginWindow {
         login.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                boolean canlogin = new Boolean(false);
+                int studentnumber = new Integer(0);
+
                 String u = textField.getText();
                 String p = new String(passwordField.getPassword());
 
-                if(u.equals(Username)&&p.equals(Password)) {
-                    MainMenu.MainWindow(newJFrame);
-                    newJFrame.dispose();
+                Connection conn = null;
+                Statement stmt = null;
+                ResultSet rs = null;
+
+                /*try {
+                    long start = System.currentTimeMillis();
+
+                    conn = DriverManager.getConnection("jdbc:mysql://118.31.60.105:3306/sssql01",
+                            "SSSQL01", "Yyq132456");
+                    long end = System.currentTimeMillis();
+                    System.out.println(conn);
+                    System.out.println("建立连接耗时： " + (end - start) + "ms 毫秒");
+
+                    stmt = conn.createStatement();
+
+                    rs = stmt.executeQuery("select * from `Users`");
+                    //System.out.println("id\tname\tage\tsex");
+
+                    while (rs.next()){
+                        //System.out.print(rs.getString(2)+" "+rs.getString(3));
+                        if(rs.getString(2).equals(u) && rs.getString(3).equals(p)){
+                            canlogin = true;
+                            Status = rs.getInt(4);
+                            studentnumber = rs.getInt(2);
+                            break;
+                        }
+                    }
+
+
+                }catch (SQLException d) {
+                    d.printStackTrace();
+                }*/
+                canlogin = true;//yaojijdeshan
+                if(canlogin==true) {
+                    if(Status==1){
+                        JOptionPane.showMessageDialog(
+                                newJFrame,
+                                "欢迎你 "+studentnumber+"同学",
+                                "消息标题",
+                                JOptionPane.INFORMATION_MESSAGE
+                        );
+                        MainMenu.MainWindow(newJFrame);
+                        newJFrame.dispose();
+                    }else {
+                        MainMenu.MainWindow(newJFrame);
+                        newJFrame.dispose();
+                    }
+
 
                 }else {
                     passwordField.getCursor();
@@ -143,6 +164,6 @@ public class LoginWindow {
 
         newJFrame.setContentPane(hBox01);
         newJFrame.pack();
-        newJFrame.setVisible(true);*/
+        newJFrame.setVisible(true);
     }
 }
