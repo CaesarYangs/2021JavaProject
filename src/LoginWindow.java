@@ -63,7 +63,9 @@ public class LoginWindow {
         JButton login = new JButton("登陆");
         final JButton register = new JButton("注册");
 
-        login.addActionListener(new ActionListener() {
+
+
+        /*login.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 boolean canlogin = new Boolean(false);
@@ -76,7 +78,7 @@ public class LoginWindow {
                 Statement stmt = null;
                 ResultSet rs = null;
 
-                /*try {
+                try {
                     long start = System.currentTimeMillis();
 
                     conn = DriverManager.getConnection("jdbc:mysql://118.31.60.105:3306/sssql01",
@@ -103,8 +105,7 @@ public class LoginWindow {
 
                 }catch (SQLException d) {
                     d.printStackTrace();
-                }*/
-                canlogin = true;//yaojijdeshan
+                }
                 if(canlogin==true) {
                     if(Status==1){
                         JOptionPane.showMessageDialog(
@@ -134,7 +135,11 @@ public class LoginWindow {
                 }
 
             }
-        });
+        });*/
+
+        //////
+        MainMenu.MainWindow(newJFrame);
+        newJFrame.dispose();
 
         Component hGlue = Box.createHorizontalStrut(20);
         Component vGlue = Box.createVerticalStrut(10);

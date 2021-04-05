@@ -1,13 +1,16 @@
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.io.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
 
 public class MainMenu {
     public static void MainWindow(JFrame relativeWindow){
         JFrame Mmenu = new JFrame("MainMenu");
 
-        Mmenu.setSize(1500, 800);
+        Mmenu.setSize(1000, 500);
 
         // 把新窗口的位置设置到 relativeWindow 窗口的中心
         Mmenu.setLocationRelativeTo(relativeWindow);
@@ -76,25 +79,105 @@ public class MainMenu {
         //主界面视图
         GroupLayout levelhead = new GroupLayout(panel);
         panel.setLayout(levelhead);
-        levelhead.setAutoCreateGaps(true);
-        levelhead.setAutoCreateContainerGaps(true);
+        //levelhead.setAutoCreateGaps(true);
+        //levelhead.setAutoCreateContainerGaps(true);
 
         JLabel H1label = new JLabel();
-        H1label.setText("准毕业生管理系统");
-        JButton Mbt01 = new JButton("测试按钮");
+            H1label.setText("毕业设计文档管理系统");
+            H1label.setFont(new Font(null,Font.BOLD,35));
+        JButton Mbt01 = new JButton("关于");
+            Mbt01.setFont(new Font(null,Font.ITALIC,15));
 
-        GroupLayout.SequentialGroup hSeqGroup = levelhead.createSequentialGroup().addGap(35).addComponent(H1label).addGap(20).addComponent(Mbt01);
+        JLabel cardCompH2label = new JLabel();
+            cardCompH2label.setText("19xxxxxx同学");
+            cardCompH2label.setFont(new Font(null,Font.CENTER_BASELINE,15));
 
-        levelhead.setHorizontalGroup(hSeqGroup);
+        JLabel cardCompH3label = new JLabel();
+            cardCompH3label.setText("欢迎进入系统");
 
-        GroupLayout.ParallelGroup vParalGroup01 = levelhead.createParallelGroup().addGap(300).addComponent(H1label).addComponent(Mbt01);
+        //头像图片处理
+        BufferedImage img = null;
+        try {
+            img = ImageIO.read(new File("/Users/yyq/2021javaProjectResources/headicon.png"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Image dimg = img.getScaledInstance(60,60,Image.SCALE_SMOOTH);
+        ImageIcon imageIcon = new ImageIcon(dimg);
+
+        JLabel headimg = new JLabel();
+        headimg.setIcon(imageIcon);
+        //
+        //简介框设计
+        Box cardComp01 = Box.createVerticalBox();
+        cardComp01.add(cardCompH2label);
+        //cardComp01.add(Box.createVerticalStrut(1));
+        cardComp01.add(cardCompH3label);
+        Box cardComp = Box.createHorizontalBox();
+        //cardComp.add(Box.createHorizontalStrut(1));
+        cardComp.add(headimg);
+        //cardComp.add(Box.createHorizontalStrut(1));
+        cardComp.add(cardComp01);
+        //cardComp.add(Box.createHorizontalStrut(1));
+        //
+
+
+        //声明按钮
+        JButton Mbt10 = new JButton("个人信息修改");
+        JButton Mbt11 = new JButton("  退出登陆 ");
+        JButton Mbt12 = new JButton("  功能查询 ");
+        JButton Mbt13 = new JButton("    关于   ");
+
+        JButton Mbt14 = new JButton("个人信息查询");
+        JButton Mbt15 = new JButton("  文档管理 ");
+        JButton Mbt16 = new JButton("  分析报告 ");
+        JButton Mbt17 = new JButton("  修改项目 ");
+        JButton Mbt18 = new JButton("教师文档录入");
+        JButton Mbt19 = new JButton("  成绩查询 ");
+        JButton Mbt20 = new JButton("zzzzzzzzz");
+        JButton Mbt21 = new JButton("zzzzzzzzz");
+
+
+        //水平连续组
+        GroupLayout.SequentialGroup hGroup = levelhead.createSequentialGroup();
+        //hGroup.addGap(5);
+        hGroup.addGroup(levelhead.createParallelGroup(GroupLayout.Alignment.CENTER).addComponent(H1label).addComponent(cardComp).addComponent(Mbt10).addComponent(Mbt11).addComponent(Mbt12).addComponent(Mbt13));
+        hGroup.addGap(100);
+        hGroup.addGroup(levelhead.createParallelGroup(GroupLayout.Alignment.CENTER).addComponent(Mbt14).addComponent(Mbt15).addComponent(Mbt16).addComponent(Mbt17));
+        hGroup.addGap(10);
+        hGroup.addGroup(levelhead.createParallelGroup(GroupLayout.Alignment.CENTER).addComponent(Mbt18).addComponent(Mbt19).addComponent(Mbt20).addComponent(Mbt21));
+        levelhead.setHorizontalGroup(hGroup);
+
+        //垂直连续组
+        GroupLayout.SequentialGroup vGroup = levelhead.createSequentialGroup();
+        vGroup.addGroup(levelhead.createParallelGroup().addComponent(H1label));
+        vGroup.addGap(50);
+        vGroup.addGroup(levelhead.createParallelGroup(GroupLayout.Alignment.CENTER).addComponent(cardComp));
+        vGroup.addGap(5);
+        vGroup.addGroup(levelhead.createParallelGroup(GroupLayout.Alignment.CENTER).addComponent(Mbt10).addComponent(Mbt14).addComponent(Mbt18));
+        vGroup.addGap(5);
+        vGroup.addGroup(levelhead.createParallelGroup(GroupLayout.Alignment.CENTER).addComponent(Mbt11).addComponent(Mbt15).addComponent(Mbt19));
+        vGroup.addGap(5);
+        vGroup.addGroup(levelhead.createParallelGroup(GroupLayout.Alignment.CENTER).addComponent(Mbt12).addComponent(Mbt16).addComponent(Mbt20));
+        vGroup.addGap(5);
+        vGroup.addGroup(levelhead.createParallelGroup(GroupLayout.Alignment.CENTER).addComponent(Mbt13).addComponent(Mbt17).addComponent(Mbt21));
+        vGroup.addGap(10);
+        levelhead.setVerticalGroup(vGroup);
 
 
 
 
-        levelhead.setVerticalGroup(vParalGroup01);
 
 
+
+
+        //GroupLayout.SequentialGroup hSeqGroup = levelhead.createSequentialGroup().addGap(35).addComponent(H1label).addGap(20).addComponent(Mbt01).addComponent(cardComp);
+
+        //levelhead.setHorizontalGroup(hSeqGroup);
+
+        //GroupLayout.ParallelGroup vParalGroup01 = levelhead.createParallelGroup().addGap(300).addComponent(H1label).addComponent(Mbt01).addComponent(cardComp);
+
+        //levelhead.setVerticalGroup(vParalGroup01);
         Mmenu.setContentPane(panel);
         Mmenu.setVisible(true);        // PS: 最后再设置为可显示(绘制), 所有添加的组件才会显示
 
