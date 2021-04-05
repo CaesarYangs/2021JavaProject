@@ -71,6 +71,7 @@ public class LoginWindow {
                 boolean canlogin = new Boolean(false);
                 int studentnumber = new Integer(0);
 
+
                 String u = textField.getText();
                 Username = textField.getText();
                 String p = new String(passwordField.getPassword());
