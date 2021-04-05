@@ -65,13 +65,14 @@ public class LoginWindow {
 
 
 
-        /*login.addActionListener(new ActionListener() {
+        login.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 boolean canlogin = new Boolean(false);
                 int studentnumber = new Integer(0);
 
                 String u = textField.getText();
+                Username = textField.getText();
                 String p = new String(passwordField.getPassword());
 
                 Connection conn = null;
@@ -135,11 +136,9 @@ public class LoginWindow {
                 }
 
             }
-        });*/
+        });
 
-        //////
-        MainMenu.MainWindow(newJFrame);
-        newJFrame.dispose();
+
 
         Component hGlue = Box.createHorizontalStrut(20);
         Component vGlue = Box.createVerticalStrut(10);

@@ -89,7 +89,7 @@ public class MainMenu {
             Mbt01.setFont(new Font(null,Font.ITALIC,15));
 
         JLabel cardCompH2label = new JLabel();
-            cardCompH2label.setText("19xxxxxx同学");
+            cardCompH2label.setText(LoginWindow.Username);
             cardCompH2label.setFont(new Font(null,Font.CENTER_BASELINE,15));
 
         JLabel cardCompH3label = new JLabel();
