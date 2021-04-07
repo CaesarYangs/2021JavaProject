@@ -5,10 +5,15 @@ import java.io.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.*;
 
 public class MainMenu {
     public static void MainWindow(JFrame relativeWindow){
-        JFrame Mmenu = new JFrame("MainMenu");
+        JFrame Mmenu = new JFrame("主菜单");
 
         Mmenu.setSize(1000, 500);
 
@@ -123,19 +128,90 @@ public class MainMenu {
 
 
         //声明按钮
-        JButton Mbt10 = new JButton("个人信息修改");
+        JButton Mbt10 = new JButton("个人信息修改");//
         JButton Mbt11 = new JButton("  退出登陆 ");
-        JButton Mbt12 = new JButton("  功能查询 ");
-        JButton Mbt13 = new JButton("    关于   ");
+        JButton Mbt12 = new JButton("  功能查询 ");//
+        JButton Mbt13 = new JButton("    关于   ");//
 
-        JButton Mbt14 = new JButton("个人信息查询");
-        JButton Mbt15 = new JButton("  文档管理 ");
-        JButton Mbt16 = new JButton("  分析报告 ");
-        JButton Mbt17 = new JButton("  修改项目 ");
-        JButton Mbt18 = new JButton("教师文档录入");
+        JButton Mbt14 = new JButton("个人信息查询");//
+        JButton Mbt15 = new JButton("  文档管理 ");//
+        JButton Mbt16 = new JButton("  分析报告 ");//
+        JButton Mbt17 = new JButton("  修改项目 ");//
+        JButton Mbt18 = new JButton("教师文档录入");//
         JButton Mbt19 = new JButton("  成绩查询 ");
         JButton Mbt20 = new JButton("zzzzzzzzz");
         JButton Mbt21 = new JButton("zzzzzzzzz");
+
+        Mbt19.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                SearchGrade.searchgrade(Mmenu);
+            }
+        });
+
+
+        Mbt18.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                LogDoc.logdoc(Mmenu);
+            }
+        });
+
+
+
+        Mbt17.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ChangeItem.changeitem(Mmenu);
+            }
+        });
+
+
+        Mbt10.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                PersonalInformationChange.PIChangeWindow(Mmenu);
+            }
+        });
+
+        Mbt14.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                PersonalInformationSearch.PISearchWindow(Mmenu);
+            }
+        });
+
+        Mbt12.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                HelpWindow.Help(Mmenu);
+            }
+        });
+
+        Mbt13.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                About.About(Mmenu);
+            }
+        });
+
+        Mbt15.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                DocManage.docManage(Mmenu);
+            }
+        });
+
+        Mbt16.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                AnalyticsWIndow.docManage(Mmenu);
+            }
+        });
+
+
+
+
 
 
         //水平连续组
@@ -165,19 +241,6 @@ public class MainMenu {
         levelhead.setVerticalGroup(vGroup);
 
 
-
-
-
-
-
-
-        //GroupLayout.SequentialGroup hSeqGroup = levelhead.createSequentialGroup().addGap(35).addComponent(H1label).addGap(20).addComponent(Mbt01).addComponent(cardComp);
-
-        //levelhead.setHorizontalGroup(hSeqGroup);
-
-        //GroupLayout.ParallelGroup vParalGroup01 = levelhead.createParallelGroup().addGap(300).addComponent(H1label).addComponent(Mbt01).addComponent(cardComp);
-
-        //levelhead.setVerticalGroup(vParalGroup01);
         Mmenu.setContentPane(panel);
         Mmenu.setVisible(true);        // PS: 最后再设置为可显示(绘制), 所有添加的组件才会显示
 
