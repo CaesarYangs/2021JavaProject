@@ -21,6 +21,61 @@ public class PersonalInformationSearch {
 
         JPanel panel = new JPanel(new FlowLayout());
 
+        //----------menu--------------
+
+        JMenuBar menuBar = new JMenuBar();
+
+        JMenu micon = new JMenu(" ");
+        JMenu fileMenu = new JMenu("文件");
+        JMenu editMenu = new JMenu("编辑");
+        JMenu viewMenu = new JMenu("视图");
+        JMenu helpMenu = new JMenu("帮助");
+        JMenu aboutMenu = new JMenu("关于");
+
+        menuBar.add(micon);
+        menuBar.add(fileMenu);
+        menuBar.add(editMenu);
+        menuBar.add(viewMenu);
+        menuBar.add(helpMenu);
+        menuBar.add(aboutMenu);
+
+        //文件 子菜单
+        JMenuItem file_open = new JMenuItem("打开");
+        JMenuItem file_new = new JMenuItem("新建");
+        JMenuItem file_quit = new JMenuItem("退出");
+        fileMenu.add(file_new);
+        fileMenu.add(file_open);
+        fileMenu.addSeparator();
+        fileMenu.add(file_quit);
+
+        file_quit.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                int result = JOptionPane.showConfirmDialog(
+                        PISW,
+                        "确认退出？",
+                        "提示",
+                        JOptionPane.YES_NO_OPTION
+                );
+
+                if(result==0){
+                    PISW.dispose();
+                    System.exit(0);
+                }
+
+
+            }
+        });
+
+
+        //编辑 子菜单
+        //视图 子菜单
+        //帮助 子菜单
+        //关于 子菜单
+
+        PISW.setJMenuBar(menuBar);
+
 
 
         DefaultTableModel model = new DefaultTableModel();
@@ -57,11 +112,28 @@ public class PersonalInformationSearch {
 
             stmt = conn.createStatement();
 
-            rs = stmt.executeQuery("select * from `Students`");
-            //System.out.println("id\tname\tage\tsex");
+            if(LoginWindow.Status!=1){
+                rs = stmt.executeQuery("select * from `Students`");
+                //System.out.println("id\tname\tage\tsex");
 
-            while (rs.next()){
-                //System.out.println(rs.getString(1)+" "+rs.getString(2)+rs.getString(3)+" "+rs.getString(4));
+                while (rs.next()){
+                    //System.out.println(rs.getString(1)+" "+rs.getString(2)+rs.getString(3)+" "+rs.getString(4));
+                    row = new Vector();
+                    row.add(rs.getString(1));
+                    row.add(rs.getString(2));
+                    row.add(rs.getString(3));
+                    row.add(rs.getString(4));
+                    row.add(rs.getString(5));
+                    row.add(rs.getString(6));
+                    row.add(rs.getString(7));
+                    row.add(rs.getString(8));
+
+                    data.add(row);
+
+                }
+            }else {
+                rs = stmt.executeQuery("SELECT * FROM Students WHERE ID ="+LoginWindow.Username);
+                rs.next();
                 row = new Vector();
                 row.add(rs.getString(1));
                 row.add(rs.getString(2));
@@ -73,8 +145,9 @@ public class PersonalInformationSearch {
                 row.add(rs.getString(8));
 
                 data.add(row);
-
             }
+
+
 
         }catch (SQLException d) {
             d.printStackTrace();

@@ -1,10 +1,29 @@
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.*;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Vector;
 
 public class SearchGrade {
+    static class GradeComparator implements Comparator {
+
+        @Override
+        public int compare(Object o1, Object o2) {
+            if((float)o1>(float)o2){
+                return 1;
+            }else if((float)o1<(float)o2){
+                return -1;
+            }else {
+                return 0;
+            }
+
+        }
+    }
+
     public static void searchgrade(JFrame relativeWindow){
         JFrame SG = new JFrame("成绩查询");
         SG.setSize(1000, 500);
@@ -27,13 +46,13 @@ public class SearchGrade {
         ResultSet rs = null;
 
         names.add("学号");
-        names.add("姓名");
-        names.add("性别");
-        names.add("专业");
-        names.add("班级");
-        names.add("入学日期");
+        names.add("总加权");
+        names.add("公共基础课加权");
+        names.add("专业课加权");
+        names.add("学分通过率");
+        names.add("获奖情况");
+        names.add("加分");
         names.add("备注");
-        names.add("教师文档");
 
 
 
@@ -48,11 +67,27 @@ public class SearchGrade {
 
             stmt = conn.createStatement();
 
-            rs = stmt.executeQuery("select * from `Students`");
-            //System.out.println("id\tname\tage\tsex");
+            if(LoginWindow.Status!=1){
+                rs = stmt.executeQuery("select * from `StudentGrades`");
+                //System.out.println("id\tname\tage\tsex");
 
-            while (rs.next()){
-                //System.out.println(rs.getString(1)+" "+rs.getString(2)+rs.getString(3)+" "+rs.getString(4));
+                while (rs.next()){
+                    row = new Vector();
+                    row.add(rs.getString(1));
+                    row.add(rs.getString(2));
+                    row.add(rs.getString(3));
+                    row.add(rs.getString(4));
+                    row.add(rs.getString(5));
+                    row.add(rs.getString(6));
+                    row.add(rs.getString(7));
+                    row.add(rs.getString(8));
+
+                    data.add(row);
+
+                }
+            }else {
+                rs = stmt.executeQuery("SELECT * FROM StudentGrades WHERE ID ="+LoginWindow.Username);
+                rs.next();
                 row = new Vector();
                 row.add(rs.getString(1));
                 row.add(rs.getString(2));
@@ -64,13 +99,74 @@ public class SearchGrade {
                 row.add(rs.getString(8));
 
                 data.add(row);
-
             }
 
         }catch (SQLException d) {
             d.printStackTrace();
         }
 
+
+        JTable table = new JTable(model);
+        JScrollPane scrollPane = new JScrollPane(table);
+
+        JButton SG_01 = new JButton("按总学分排序");
+        SG_01.setFont(new Font(null,Font.ITALIC,15));
+
+        /*Collections.sort(data, new Comparator<Vector>() {
+            @Override
+            public int compare(Vector o1, Vector o2) {
+                if((float)o1.get(1)>(float)o2.get(1)){
+                    return 1;
+                }else if((float)o1.get(1)<(float)o2.get(1)){
+                    return -1;
+                }else {
+                    return 0;
+                }
+
+            }
+
+        });*/
+
+        Vector finalRow = row;
+        SG_01.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                for(int i=0;i<data.size();i++){
+                    boolean flag = true;
+                    for(int j=0;j<data.size()-i-1;j++){
+                        if(Float.parseFloat((String) data.get(j).get(1))<Float.parseFloat((String) data.get(j+1).get(1))){
+                            Vector tmp = new Vector();
+                            tmp.add(data.get(j+1));
+                            data.set(j+1,data.get(j));
+                            data.set(j, (Vector) tmp.firstElement());
+
+                            flag = false;
+                        }
+                    }
+                }
+
+
+                table.updateUI();
+                scrollPane.updateUI();
+            }
+        });
+
+        /*Collections.sort(data, new Comparator<Vector>() {
+            @Override
+            public int compare(Vector o1, Vector o2) {
+
+                if((float)o1.get(1)>(float)o2.get(1)){
+                    return 1;
+                }else if((float)o1.get(1)<(float)o2.get(1)){
+                    return -1;
+                }else {
+                    return 0;
+                }
+
+            }
+
+        });*/
 
 
         //System.out.print(data.get(1).get(0));
@@ -81,18 +177,6 @@ public class SearchGrade {
             }
         }*/
 
-        /*Collections.sort(data, new Comparator<String>() {
-            @Override
-            public int compare(String o1, String o2) {
-
-                System.out.print(data.get(1));
-
-
-
-                return 0;
-            }
-
-        });*/
 
 
 
@@ -100,7 +184,8 @@ public class SearchGrade {
 
 
 
-        JTable table = new JTable(model);
+
+
         table.setForeground(Color.BLACK);                   // 字体颜色
         table.setFont(new Font(null, Font.PLAIN, 14));      // 字体样式
         table.setSelectionForeground(Color.DARK_GRAY);      // 选中后字体颜色
@@ -110,11 +195,12 @@ public class SearchGrade {
         table.setRowHeight(30);
 
         table.setPreferredScrollableViewportSize(new Dimension(900,300));
-        JScrollPane scrollPane = new JScrollPane(table);
+
 
         //panel.add(table.getTableHeader(), BorderLayout.NORTH);
         //panel.add(table, BorderLayout.CENTER);
 
+        panel.add(SG_01);
         panel.add(scrollPane);
 
         SG.setContentPane(panel);
