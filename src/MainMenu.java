@@ -162,7 +162,18 @@ public class MainMenu {
         Mbt17.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ChangeItem.changeitem(Mmenu);
+                if(LoginWindow.Status!=1){
+                    ChangeItem.changeitem(Mmenu);
+                }else {
+                    JOptionPane.showMessageDialog(
+                            Mmenu,
+                            "无权限访问",
+                            "提示",
+                            JOptionPane.WARNING_MESSAGE
+                    );
+                }
+
+
             }
         });
 
