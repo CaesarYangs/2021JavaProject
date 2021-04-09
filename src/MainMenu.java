@@ -5,11 +5,6 @@ import java.io.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.sql.*;
 
 public class MainMenu {
     public static void MainWindow(JFrame relativeWindow){
@@ -129,18 +124,25 @@ public class MainMenu {
 
         //声明按钮
         JButton Mbt10 = new JButton("登录信息修改");//
-        JButton Mbt11 = new JButton("  退出登陆 ");
-        JButton Mbt12 = new JButton("  功能查询 ");//
-        JButton Mbt13 = new JButton("    关于   ");//
+        JButton Mbt11 = new JButton("  退出登陆 ");//
+        JButton Mbt12 = new JButton("  功能查询 ");
+        JButton Mbt13 = new JButton("    关于   ");
 
         JButton Mbt14 = new JButton("个人信息查询");//
         JButton Mbt15 = new JButton("  文档管理 ");//
-        JButton Mbt16 = new JButton("  分析报告 ");//
-        JButton Mbt17 = new JButton("  修改项目 ");//
+        JButton Mbt16 = new JButton("  分析报告 ");
+        JButton Mbt17 = new JButton("检查数据连接");//
         JButton Mbt18 = new JButton("教师文档录入");//
-        JButton Mbt19 = new JButton("  成绩查询 ");
-        JButton Mbt20 = new JButton("zzzzzzzzz");
-        JButton Mbt21 = new JButton("zzzzzzzzz");
+        JButton Mbt19 = new JButton("  成绩查询 ");//
+        JButton Mbt20 = new JButton("一键导出成绩");
+        JButton Mbt21 = new JButton("版权所有");
+
+        Mbt20.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ExportGrade.searchgrade(Mmenu);
+            }
+        });
 
         Mbt19.addActionListener(new ActionListener() {
             @Override
@@ -163,7 +165,7 @@ public class MainMenu {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(LoginWindow.Status!=1){
-                    ChangeItem.changeitem(Mmenu);
+                    CheckConnection.Check(Mmenu);
                 }else {
                     JOptionPane.showMessageDialog(
                             Mmenu,
