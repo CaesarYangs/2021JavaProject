@@ -177,6 +177,23 @@ public class MainMenu {
             }
         });
 
+        Mbt11.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int result = JOptionPane.showConfirmDialog(
+                        Mmenu,
+                        "确认登出？",
+                        "登出",
+                        JOptionPane.YES_NO_OPTION
+                );
+                if(result == 0){
+                    LoginWindow.LoginW(Mmenu);
+                    Mmenu.dispose();
+                }else {
+
+                }
+            }
+        });
 
         Mbt10.addActionListener(new ActionListener() {
             @Override
