@@ -128,7 +128,7 @@ public class MainMenu {
 
 
         //声明按钮
-        JButton Mbt10 = new JButton("个人信息修改");//
+        JButton Mbt10 = new JButton("登录信息修改");//
         JButton Mbt11 = new JButton("  退出登陆 ");
         JButton Mbt12 = new JButton("  功能查询 ");//
         JButton Mbt13 = new JButton("    关于   ");//
