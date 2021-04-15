@@ -4,7 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.*;
 
-public class LogWindow {
+public class LogWindow{
     public static void Logwindow(JFrame relativeWindow){
         JFrame docchange = new JFrame("教师录入成绩"+"---当前学生："+LogDoc.selectedId);
         docchange.setSize(1000, 300);

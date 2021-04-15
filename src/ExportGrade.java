@@ -9,7 +9,7 @@ import java.sql.*;
 import java.util.Calendar;
 import java.util.Vector;
 
-public class ExportGrade {
+public class ExportGrade extends SearchGrade {
     public static void exportTable(Vector<Vector> data,Vector names, File file) throws IOException {
 
 

@@ -6,7 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 
-public class MainMenu {
+public class MainMenu extends LoginWindow{
     public static void MainWindow(JFrame relativeWindow){
         JFrame Mmenu = new JFrame("主菜单");
 

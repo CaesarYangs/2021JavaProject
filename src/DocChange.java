@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 import java.sql.*;
 import java.util.Vector;
 
-public class DocChange {
+public class DocChange extends DocManage{
     public static void Docchange(JFrame relativeWindow){
         JFrame docchange = new JFrame("修改毕业设计题目");
         docchange.setSize(1000, 300);

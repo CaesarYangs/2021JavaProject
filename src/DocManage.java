@@ -12,9 +12,25 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.*;
+import java.util.Comparator;
 import java.util.Vector;
 
 public class DocManage {
+    static class FileComparator implements Comparator {
+
+        @Override
+        public int compare(Object o1, Object o2) {
+            if((float)o1>(float)o2){
+                return 1;
+            }else if((float)o1<(float)o2){
+                return -1;
+            }else {
+                return 0;
+            }
+
+        }
+    }
+
     public static void docManage(JFrame relativeWindow){
         JFrame docManage = new JFrame("毕业设计文档管理");
         docManage.setSize(1000, 500);

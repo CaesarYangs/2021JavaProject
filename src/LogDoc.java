@@ -8,7 +8,7 @@ import java.awt.event.ActionListener;
 import java.sql.*;
 import java.util.Vector;
 
-public class LogDoc {
+public class LogDoc extends DocManage {
 
     public static int selectedRow;
     public static String selectedId;
