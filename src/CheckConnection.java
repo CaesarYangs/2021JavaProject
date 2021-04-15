@@ -35,7 +35,7 @@ public class CheckConnection {
             long end = System.currentTimeMillis();
             //System.out.println(conn);
             //System.out.println("建立连接耗时： " + (end - start) + "ms 毫秒");
-            l0.setText("连接位置：mysql://118.31.60.105:3306/sssql01");
+            l0.setText("连接位置：杨业卿的云端服务器 地址：mysql://118.31.60.105:3306/sssql01");
             l1.setText(String.valueOf(conn));
             l2.setText("建立连接耗时： " + (end - start) + "ms 毫秒");
             l3.setText("连接成功");

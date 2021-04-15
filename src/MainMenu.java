@@ -135,7 +135,7 @@ public class MainMenu {
         JButton Mbt18 = new JButton("教师文档录入");//
         JButton Mbt19 = new JButton("  成绩查询 ");//
         JButton Mbt20 = new JButton("一键导出成绩");
-        JButton Mbt21 = new JButton("版权所有");
+        JButton Mbt21 = new JButton("版权所有:杨业卿");
 
         Mbt20.addActionListener(new ActionListener() {
             @Override
@@ -155,7 +155,18 @@ public class MainMenu {
         Mbt18.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                LogDoc.logdoc(Mmenu);
+                if(LoginWindow.Status!=1){
+                    LogDoc.logdoc(Mmenu);
+                }else {
+                    JOptionPane.showMessageDialog(
+                            Mmenu,
+                            "无权限访问",
+                            "消息标题",
+                            JOptionPane.INFORMATION_MESSAGE
+                    );
+                }
+
+
             }
         });
 
@@ -164,18 +175,7 @@ public class MainMenu {
         Mbt17.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(LoginWindow.Status!=1){
-                    CheckConnection.Check(Mmenu);
-                }else {
-                    JOptionPane.showMessageDialog(
-                            Mmenu,
-                            "无权限访问",
-                            "提示",
-                            JOptionPane.WARNING_MESSAGE
-                    );
-                }
-
-
+                CheckConnection.Check(Mmenu);
             }
         });
 

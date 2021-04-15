@@ -4,17 +4,16 @@ import javax.swing.table.TableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.sql.*;
 import java.util.Vector;
 
 public class ExportGrade {
     public static void exportTable(Vector<Vector> data,Vector names, File file) throws IOException {
-        BufferedWriter bWriter = new BufferedWriter(new FileWriter(file));
-        //byte b[] =
+        OutputStreamWriter writerStream = new OutputStreamWriter(new FileOutputStream(file),"GBK");
+
+        BufferedWriter bWriter = new BufferedWriter(writerStream);
+
         for(int i=0; i < names.size(); i++) {
             bWriter.write(names.get(i).toString());
             bWriter.write("\t");
