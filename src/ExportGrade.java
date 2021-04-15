@@ -6,13 +6,20 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.*;
 import java.sql.*;
+import java.util.Calendar;
 import java.util.Vector;
 
 public class ExportGrade {
     public static void exportTable(Vector<Vector> data,Vector names, File file) throws IOException {
+
+
         OutputStreamWriter writerStream = new OutputStreamWriter(new FileOutputStream(file),"GBK");
 
         BufferedWriter bWriter = new BufferedWriter(writerStream);
+        if(LoginWindow.Status==1){
+            bWriter.write(LoginWindow.Username+"成绩");
+            bWriter.newLine();
+        }
 
         for(int i=0; i < names.size(); i++) {
             bWriter.write(names.get(i).toString());
@@ -123,6 +130,7 @@ public class ExportGrade {
 
 
 
+
         try {
             long start = System.currentTimeMillis();
 
@@ -194,12 +202,26 @@ public class ExportGrade {
         JButton EXPORT = new JButton("导出成绩");
         EXPORT.setFont(new Font(null,Font.ITALIC,15));
 
+        Calendar c = Calendar.getInstance();
+        int year = c.get(Calendar.YEAR);
+        int month = c.get(Calendar.MONTH);
+        int date = c.get(Calendar.DATE);
+        int hour = c.get(Calendar.HOUR_OF_DAY);
+        int minute = c.get(Calendar.MINUTE);
+        int second = c.get(Calendar.SECOND);
+
         EXPORT.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String stringfile ="/Users/yyq/Downloads/export"+".xls";
+                String stringfile ="/Users/yyq/Downloads/export"+year+"-"+month+"-"+date+"-"+hour+":"+minute+":"+second+".xls";
                 try {
                     exportTable(data,names, new File(stringfile));
+                    JOptionPane.showMessageDialog(
+                            SG,
+                            "导出成功 已下载",
+                            "消息",
+                            JOptionPane.INFORMATION_MESSAGE
+                    );
                 } catch (IOException ex) {
                     System.out.println(ex.getMessage());
                     ex.printStackTrace();
